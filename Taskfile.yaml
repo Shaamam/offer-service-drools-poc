@@ -1,0 +1,12 @@
+version: "3"
+
+dotenv: [".env"]
+
+tasks:
+  build:
+    cmds:
+      - ./gradlew build
+
+  run:
+    cmds:
+      - ./gradlew bootRun

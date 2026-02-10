@@ -1,0 +1,60 @@
+### 1. First Time Customer Offer (15% discount on orders >= 500)
+POST http://localhost:8082/api/offers/evaluate
+Content-Type: application/json
+
+{
+  "offerId": "FIRST-TIME-001",
+  "customerId": "NEW-CUST-100",
+  "orderAmount": 600.00,
+  "productCategory": "ELECTRONICS",
+  "isFirstTimeCustomer": true,
+  "offerValidUntil": "2026-12-31"
+}
+
+
+### 2. Premium Customer Offer (20% discount on orders >= 1000)
+POST http://localhost:8082/api/offers/evaluate
+Content-Type: application/json
+
+{
+  "offerId": "PREMIUM-001",
+  "customerId": "CUST-PREMIUM-200",
+  "customerSegment": "PREMIUM",
+  "orderAmount": 1500.00,
+  "productCategory": "ELECTRONICS",
+  "isFirstTimeCustomer": false,
+  "offerValidUntil": "2026-12-31"
+}
+
+
+### 3. Fashion Category Offer (25% discount on orders >= 1500)
+POST http://localhost:8082/api/offers/evaluate
+Content-Type: application/json
+
+{
+  "offerId": "FASHION-001",
+  "customerId": "CUST-300",
+  "customerSegment": "REGULAR",
+  "orderAmount": 1800.00,
+  "productCategory": "FASHION",
+  "isFirstTimeCustomer": false,
+  "offerValidUntil": "2026-12-31"
+}
+
+###
+
+### 4. Electronics Category Offer (10% discount on orders >= 2000)
+POST http://localhost:8082/api/offers/evaluate
+Content-Type: application/json
+
+{
+  "offerId": "ELECTRONICS-001",
+  "customerId": "CUST-400",
+  "customerSegment": "REGULAR",
+  "orderAmount": 2500.00,
+  "productCategory": "ELECTRONICS",
+  "isFirstTimeCustomer": false,
+  "offerValidUntil": "2026-12-31"
+}
+
+###

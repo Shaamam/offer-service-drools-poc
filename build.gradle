@@ -22,12 +22,39 @@ configurations {
 
 repositories {
 	mavenCentral()
+	mavenLocal()  // Required for loading KJAR from local Maven repo
+	
+	// GitHub Packages repository for rules-engine-kjar
+	maven {
+		url = uri("https://maven.pkg.github.com/Shaamam/rules-engine-kjar")
+		credentials {
+			username = System.getProperty("GITHUB_USERNAME") ?: System.getenv("GITHUB_USERNAME")
+			password = System.getProperty("GITHUB_TOKEN") ?: System.getenv("GITHUB_TOKEN")
+		}
+	}
 }
 
 dependencies {
+	// Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	
+	// Drools
+	implementation 'org.drools:drools-core:8.44.0.Final'
+	implementation 'org.drools:drools-compiler:8.44.0.Final'
+	implementation 'org.drools:drools-mvel:8.44.0.Final'
+	implementation 'org.kie:kie-api:8.44.0.Final'
+	implementation 'org.kie:kie-ci:8.44.0.Final'  // Required for KieScanner
+    implementation "org.drools:drools-xml-support:8.44.0.Final"
+	
+	// KJAR Dependency (rules engine)
+	implementation 'io.shaama:rules-engine-kjar:1.0.0'
+	
+	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	
+	// Testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
