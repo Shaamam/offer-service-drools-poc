@@ -35,8 +35,6 @@ public class OfferService {
         // Map request to domain model
         Offer offer = mapToOffer(request);
 
-        log.info("Offer {}", offer);
-        
         // Execute rules
         try {
             StatelessKieSession session = kieContainerManager.getOfferSession();
