@@ -80,13 +80,14 @@ public class KieContainerManager {
     
     /**
      * Load rules from KJAR dependency
-     * Uses LATEST to always poll for the newest version
+     * Uses LATEST to always poll for the newest SNAPSHOT version
      */
     private void loadRules() {
         try {
-            // Use version from properties (typically LATEST for always getting newest)
-            currentReleaseId = kieServices.newReleaseId(groupId, artifactId, version);
-            log.info("Loading rules from KJAR: {}:{}:{}", groupId, artifactId, version);
+            // Use LATEST for version to always poll for the newest SNAPSHOT
+            currentReleaseId = kieServices.newReleaseId(groupId, artifactId, "LATEST");
+            log.info("Loading rules from KJAR: {}:{}:{}", groupId, artifactId, "LATEST");
+            log.info("  (Will poll for latest version from: {})", version);
             
             kieContainer = kieServices.newKieContainer(currentReleaseId);
             
