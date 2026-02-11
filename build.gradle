@@ -48,7 +48,7 @@ dependencies {
     implementation "org.drools:drools-xml-support:8.44.0.Final"
 	
 	// KJAR Dependency (rules engine)
-	implementation 'io.shaama:rules-engine-kjar:1.0.0'
+    implementation 'io.shaama:rules-engine-kjar:latest.release'
 	
 	// Lombok
 	compileOnly 'org.projectlombok:lombok'
