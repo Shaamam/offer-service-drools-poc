@@ -1,0 +1,14 @@
+projectId: "sentinalx"
+region: "us-central1"
+serviceName: "offer-manager-service"
+dockerfilePath: "Dockerfile"
+environmentFile: "./.env"
+containerPort: 8080
+cpu: "1"
+memory: "512Mi"
+minInstances: 0
+maxInstances: 10
+concurrency: 80
+timeout: 300
+allowUnauthenticated: true
+environmentVariables:

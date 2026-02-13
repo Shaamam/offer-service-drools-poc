@@ -68,6 +68,25 @@ public class OfferController {
     }
     
     /**
+     * Get all loaded rules from the KJAR
+     * 
+     * GET /api/offers/rules
+     */
+    @GetMapping("/rules")
+    public ResponseEntity<java.util.Map<String, Object>> getLoadedRules() {
+        log.info("Fetching loaded rules from KieContainer");
+        
+        java.util.List<KieContainerManager.RuleInfo> rules = kieContainerManager.getLoadedRules();
+        
+        java.util.Map<String, Object> response = new java.util.HashMap<>();
+        response.put("totalRules", rules.size());
+        response.put("rules", rules);
+        response.put("timestamp", java.time.LocalDateTime.now());
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
      * Health check endpoint for rules engine
      * 
      * GET /api/offers/health

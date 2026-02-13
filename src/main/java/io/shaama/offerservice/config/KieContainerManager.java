@@ -173,6 +173,36 @@ public class KieContainerManager {
     }
     
     /**
+     * Get details of all loaded rules from KieContainer
+     * 
+     * @return List of rule details
+     */
+    public java.util.List<RuleInfo> getLoadedRules() {
+        java.util.List<RuleInfo> rules = new java.util.ArrayList<>();
+        
+        try {
+            kieContainer.getKieBaseNames().forEach(kieBaseName -> {
+                var kieBase = kieContainer.getKieBase(kieBaseName);
+                var packages = kieBase.getKiePackages();
+                
+                packages.forEach(kiePackage -> {
+                    kiePackage.getRules().forEach(rule -> {
+                        rules.add(RuleInfo.builder()
+                            .ruleName(rule.getName())
+                            .packageName(rule.getPackageName())
+                            .kieBaseName(kieBaseName)
+                            .build());
+                    });
+                });
+            });
+        } catch (Exception e) {
+            log.error("Failed to retrieve loaded rules", e);
+        }
+        
+        return rules;
+    }
+    
+    /**
      * Clean up resources on application shutdown
      */
     @PreDestroy
@@ -198,5 +228,16 @@ public class KieContainerManager {
         private boolean autoReloadEnabled;
         private long scanIntervalSeconds;
         private String kieBaseNames;
+    }
+    
+    /**
+     * Rule information DTO
+     */
+    @lombok.Data
+    @lombok.Builder
+    public static class RuleInfo {
+        private String ruleName;
+        private String packageName;
+        private String kieBaseName;
     }
 }

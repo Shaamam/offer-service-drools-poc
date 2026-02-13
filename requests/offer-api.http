@@ -57,4 +57,5 @@ Content-Type: application/json
   "offerValidUntil": "2026-12-31"
 }
 
-###
+### 1. List of Rules
+GET http://localhost:8082/api/offers/rules
